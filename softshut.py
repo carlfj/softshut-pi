@@ -13,10 +13,10 @@ def shutdown(pin):
     print("Interrupt detected... Halting the system!")
     system('shutdown -h now')
 
-print("Setting GPIO...") 
+#print("Setting GPIO...") 
 gpio.setmode(gpio.BOARD) # Set pin numbering to board numbering
-gpio.setup(7, gpio.IN) # Set up pin 7 as an input
-print("Setting interrupt...")
-gpio.add_event_detect(7, gpio.RISING, callback=shutdown, bouncetime=200) # Set up an interrupt to look for button presses
+gpio.setup(26, gpio.IN, pull_up_down=gpio.PUD_UP) # Set up pin 26 as an input and internal pullup resistor
+#print("Setting interrupt...")
+gpio.add_event_detect(26, gpio.FALLING, callback=shutdown, bouncetime=200) # Set up an interrupt to look for button presses
  
 loop() # Run the loop function to keep script running
